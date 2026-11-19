@@ -57,9 +57,9 @@
 </head>
 <body class="bg-[#07090e] text-slate-100 antialiased selection:bg-orange-500 selection:text-white">
 
-    <!-- Top Tactical Status Bar -->
-    <div class="bg-[#0c101b] border-b border-slate-800/80 text-xs text-slate-300 py-2 px-4 relative z-50">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-2">
+    <!-- Top Tactical Status Bar (100% da tela) -->
+    <div class="bg-[#0c101b] border-b border-slate-800/80 text-xs text-slate-300 py-2 relative z-50">
+        <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-12 flex flex-col md:flex-row justify-between items-center gap-2">
             <div class="flex items-center space-x-3">
                 <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
                     <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 mr-1.5 animate-ping"></span>
@@ -94,10 +94,10 @@
 
     <!-- Main Navigation Bar (Glassmorphism & Fixed) -->
     <header class="sticky top-0 z-40 transition-all duration-300 bg-[#07090e]/85 backdrop-blur-md border-b border-slate-800/80">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-12">
             <div class="flex items-center justify-between h-20">
                 <!-- Brand / Logo -->
-                <a href="{{ route('home') }}" class="flex items-center space-x-3 group">
+                <a href="{{ route('home') }}" class="flex items-center space-x-3 group shrink-0">
                     <div class="relative w-12 h-12 rounded-lg overflow-hidden bg-black border border-orange-500/30 flex items-center justify-center p-1 group-hover:border-orange-500 transition-colors shadow-lg shadow-orange-500/10">
                         <img src="{{ asset('images/atlas/emblem.png') }}" alt="Atlas Segurança Logo" class="w-full h-full object-contain transform group-hover:scale-110 transition-transform duration-300">
                     </div>
@@ -110,36 +110,36 @@
                     </div>
                 </a>
 
-                <!-- Desktop Navigation Links -->
-                <nav class="hidden lg:flex items-center space-x-8 text-sm font-medium text-slate-300">
-                    <a href="{{ route('home') }}#inicio" class="hover:text-orange-400 transition-colors">Início</a>
-                    <a href="{{ route('home') }}#servicos" class="hover:text-orange-400 transition-colors">Serviços</a>
-                    <a href="{{ route('home') }}#drone-ia" class="text-orange-400 hover:text-orange-300 font-semibold flex items-center space-x-1.5 transition-colors">
-                        <span class="w-1.5 h-1.5 rounded-full bg-orange-400 animate-pulse"></span>
-                        <span>Drones & IA</span>
+                <!-- Desktop Navigation Links (Linha única contínua, sem quebrar linha) -->
+                <nav class="hidden lg:flex items-center space-x-3 xl:space-x-6 2xl:space-x-8 text-xs xl:text-sm font-semibold text-slate-300 whitespace-nowrap shrink-0">
+                    <a href="{{ route('home') }}#inicio" class="hover:text-orange-400 transition-colors whitespace-nowrap">Início</a>
+                    <a href="{{ route('home') }}#servicos" class="hover:text-orange-400 transition-colors whitespace-nowrap">Serviços</a>
+                    <a href="{{ route('home') }}#drone-ia" class="text-orange-400 hover:text-orange-300 font-bold flex items-center space-x-1.5 transition-colors whitespace-nowrap">
+                        <span class="w-1.5 h-1.5 rounded-full bg-orange-400 animate-pulse shrink-0"></span>
+                        <span class="whitespace-nowrap">Drones & IA</span>
                     </a>
-                    <a href="{{ route('home') }}#sobre" class="hover:text-orange-400 transition-colors">Sobre Nós</a>
-                    <a href="{{ route('home') }}#diferenciais" class="hover:text-orange-400 transition-colors">Diferenciais</a>
-                    <a href="{{ route('home') }}#orcamento" class="hover:text-orange-400 transition-colors">Simulador</a>
-                    <a href="{{ route('home') }}#galeria" class="hover:text-orange-400 transition-colors">Galeria</a>
-                    <a href="{{ route('home') }}#contato" class="hover:text-orange-400 transition-colors">Contato</a>
-                    <a href="{{ route('admin.dashboard') }}" class="px-3 py-1 rounded-lg bg-slate-900 border border-slate-700 text-orange-400 hover:text-white hover:border-orange-500 transition-colors text-xs font-bold flex items-center space-x-1.5">
-                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <a href="{{ route('home') }}#sobre" class="hover:text-orange-400 transition-colors whitespace-nowrap">Sobre Nós</a>
+                    <a href="{{ route('home') }}#diferenciais" class="hover:text-orange-400 transition-colors whitespace-nowrap">Diferenciais</a>
+                    <a href="{{ route('home') }}#orcamento" class="hover:text-orange-400 transition-colors whitespace-nowrap">Simulador</a>
+                    <a href="{{ route('home') }}#galeria" class="hover:text-orange-400 transition-colors whitespace-nowrap">Galeria</a>
+                    <a href="{{ route('home') }}#contato" class="hover:text-orange-400 transition-colors whitespace-nowrap">Contato</a>
+                    <a href="{{ route('admin.dashboard') }}" class="px-3.5 py-1.5 rounded-lg bg-slate-900 border border-slate-700 text-orange-400 hover:text-white hover:border-orange-500 transition-colors text-xs font-bold flex items-center space-x-1.5 whitespace-nowrap shrink-0">
+                        <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
                         </svg>
-                        <span>Painel Admin</span>
+                        <span class="whitespace-nowrap">Painel Admin</span>
                     </a>
                 </nav>
 
                 <!-- Action Button & WhatsApp Header CTA -->
-                <div class="hidden sm:flex items-center space-x-3">
-                    <a href="{{ route('home') }}#orcamento" class="relative group px-5 py-2.5 rounded-xl font-semibold text-xs tracking-wider uppercase text-white bg-gradient-to-r from-orange-600 to-amber-500 hover:from-orange-500 hover:to-amber-400 shadow-lg shadow-orange-600/30 transition-all duration-300 transform hover:-translate-y-0.5">
-                        <span class="flex items-center">
-                            <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="hidden sm:flex items-center space-x-3 shrink-0">
+                    <a href="{{ route('home') }}#orcamento" class="relative group px-5 py-2.5 rounded-xl font-bold text-xs tracking-wider uppercase text-white bg-gradient-to-r from-orange-600 to-amber-500 hover:from-orange-500 hover:to-amber-400 shadow-lg shadow-orange-600/30 transition-all duration-300 transform hover:-translate-y-0.5 whitespace-nowrap shrink-0">
+                        <span class="flex items-center whitespace-nowrap">
+                            <svg class="w-4 h-4 mr-1.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
                             </svg>
-                            Orçamento Rápido
+                            <span class="whitespace-nowrap">Orçamento Rápido</span>
                         </span>
                     </a>
                 </div>
