@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Atlas Segurança e Zeladoria | Segurança Privada, Portaria e Vigia em Arcos MG')
+@section('title', $company['name'] . ' | Segurança Privada, Portaria e Vigia em Arcos MG')
 
 @section('content')
 
@@ -23,9 +23,9 @@
                 <!-- Location & Badge -->
                 <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-orange-500/40 text-xs font-semibold text-orange-400 shadow-lg backdrop-blur-md">
                     <span class="w-2 h-2 rounded-full bg-orange-500 animate-ping"></span>
-                    <span>ATLAS SEGURANÇA E ZELADORIA LTDA</span>
+                    <span>{{ strtoupper($company['name']) }}</span>
                     <span class="text-slate-500">•</span>
-                    <span class="text-slate-200">ARCOS - MG</span>
+                    <span class="text-slate-200">{{ strtoupper($company['city']) }}</span>
                 </div>
 
                 <!-- Main Headline -->
@@ -35,9 +35,9 @@
                     <span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-amber-400 to-orange-500 text-glow-orange">Proteção Absoluta.</span>
                 </h1>
 
-                <!-- Subheadline with requested services -->
+                <!-- Subheadline with dynamic texts -->
                 <p class="text-base sm:text-lg text-slate-300 max-w-2xl leading-relaxed">
-                    Soluções completas e integradas para empresas, usinas solares, condomínios, hospitais e eventos em <strong>Arcos MG</strong> e região.
+                    {{ $company['hero_subtitle'] }}
                 </p>
 
                 <!-- Tags of Provided Services -->
@@ -59,11 +59,11 @@
                         <span>Simular Orçamento Online</span>
                     </a>
 
-                    <a href="https://wa.me/5537999673426?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Atlas%20Seguran%C3%A7a%20e%20gostaria%20de%20falar%20com%20um%20especialista." target="_blank" class="w-full sm:w-auto px-7 py-4 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-emerald-500/40 text-emerald-400 hover:text-emerald-300 font-bold text-sm tracking-wide transition-all duration-300 text-center flex items-center justify-center space-x-2 shadow-lg">
+                    <a href="https://wa.me/{{ $company['phone_raw'] }}?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Atlas%20Seguran%C3%A7a%20e%20gostaria%20de%20falar%20com%20um%20especialista." target="_blank" class="w-full sm:w-auto px-7 py-4 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-emerald-500/40 text-emerald-400 hover:text-emerald-300 font-bold text-sm tracking-wide transition-all duration-300 text-center flex items-center justify-center space-x-2 shadow-lg">
                         <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
                             <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
                         </svg>
-                        <span>WhatsApp (37) 99967-3426</span>
+                        <span>WhatsApp {{ $company['phone'] }}</span>
                     </a>
                 </div>
 
@@ -73,7 +73,7 @@
                         <svg class="w-4 h-4 text-emerald-400 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                         </svg>
-                        Base Própria em Arcos MG
+                        Base em {{ $company['city'] }}
                     </span>
                     <span class="flex items-center">
                         <svg class="w-4 h-4 text-emerald-400 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -86,16 +86,14 @@
 
             <!-- Right Hero Visual: 3D Interactive Card Display (5 cols) -->
             <div class="lg:col-span-5 relative flex justify-center">
-                <!-- Floating 3D Tilt Card with Official Atlas Logo -->
                 <div class="tilt-card relative w-full max-w-md rounded-3xl p-1 bg-gradient-to-b from-orange-500/40 via-slate-800/50 to-slate-900 border border-orange-500/30 shadow-2xl shadow-orange-500/20 backdrop-blur-xl">
                     <div class="relative rounded-[22px] bg-[#090d16] p-6 overflow-hidden">
-                        <!-- Top HUD Bar -->
                         <div class="flex items-center justify-between pb-4 border-b border-slate-800 text-xs text-slate-400">
                             <div class="flex items-center space-x-2">
                                 <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping"></span>
                                 <span class="font-bold text-white tracking-widest text-[11px]">SISTEMA ATLAS CFTV 24H</span>
                             </div>
-                            <span class="font-mono text-orange-400">ARCOS - MG</span>
+                            <span class="font-mono text-orange-400">{{ strtoupper($company['city']) }}</span>
                         </div>
 
                         <!-- Official Logo Photo Embed with 3D reflection -->
@@ -115,7 +113,7 @@
                             </div>
                             <div class="p-3 rounded-xl bg-slate-900/80 border border-slate-800/80">
                                 <span class="text-[10px] text-slate-400 uppercase tracking-wider block">Plantão Telefônico</span>
-                                <span class="text-orange-400 font-bold block mt-0.5">(37) 99967-3426</span>
+                                <span class="text-orange-400 font-bold block mt-0.5">{{ $company['phone'] }}</span>
                             </div>
                         </div>
                     </div>
@@ -193,7 +191,6 @@
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        <!-- Section Header -->
         <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
             <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-orange-500/10 border border-orange-500/30 text-orange-400 text-xs font-bold uppercase tracking-wider">
                 <span>🛡️ Portfólio Operacional</span>
@@ -206,18 +203,15 @@
             </p>
         </div>
 
-        <!-- Services Grid (7 Official Services) -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             @foreach($services as $service)
             <div class="tilt-card group relative rounded-2xl bg-[#0c101b] border border-slate-800 hover:border-orange-500/50 transition-all duration-300 shadow-xl overflow-hidden flex flex-col justify-between">
                 
                 <div>
-                    <!-- Service Image with Overlay -->
                     <div class="relative h-56 w-full overflow-hidden bg-slate-900">
                         <img src="{{ asset($service->image) }}" alt="{{ $service->title }} - Atlas Segurança" class="w-full h-full object-cover transform group-hover:scale-108 transition-transform duration-700">
                         <div class="absolute inset-0 bg-gradient-to-t from-[#0c101b] via-[#0c101b]/40 to-transparent"></div>
                         
-                        <!-- Badge Tag -->
                         <div class="tilt-badge absolute top-4 left-4">
                             <span class="px-2.5 py-1 rounded-md bg-black/75 border border-orange-500/40 text-[11px] font-bold text-orange-400 uppercase tracking-wider backdrop-blur-md">
                                 {{ $service->badge ?? 'Atlas Especializado' }}
@@ -225,7 +219,6 @@
                         </div>
                     </div>
 
-                    <!-- Card Body -->
                     <div class="p-6 space-y-4">
                         <h3 class="text-xl font-extrabold text-white group-hover:text-orange-400 transition-colors">
                             {{ $service->title }}
@@ -235,7 +228,6 @@
                             {{ $service->short_description }}
                         </p>
 
-                        <!-- Highlights List -->
                         @if(!empty($service->features))
                         <ul class="space-y-1.5 pt-2 border-t border-slate-800/80">
                             @foreach(array_slice($service->features, 0, 3) as $feat)
@@ -251,7 +243,6 @@
                     </div>
                 </div>
 
-                <!-- Card Footer Actions -->
                 <div class="p-6 pt-0 border-t border-slate-800/60 mt-4 flex items-center justify-between gap-3">
                     <button type="button" 
                             class="open-service-modal text-xs font-bold text-slate-300 hover:text-orange-400 transition-colors flex items-center" 
@@ -284,44 +275,40 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
-            <!-- Left: Visual Collage with Real Photos -->
             <div class="lg:col-span-5 relative">
                 <div class="relative rounded-2xl overflow-hidden border border-slate-800 shadow-2xl">
                     <img src="{{ asset('images/atlas/usinas-vigia.jpg') }}" alt="Vigia em Usinas Atlas" class="w-full h-96 object-cover">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
                     <div class="absolute bottom-6 left-6 right-6">
-                        <span class="px-2.5 py-1 rounded bg-orange-500/20 text-orange-400 text-xs font-bold border border-orange-500/30">BASE ARCOS MG</span>
+                        <span class="px-2.5 py-1 rounded bg-orange-500/20 text-orange-400 text-xs font-bold border border-orange-500/30">BASE {{ strtoupper($company['city']) }}</span>
                         <h4 class="text-xl font-bold text-white mt-1">Presença Estratégica Regional</h4>
                         <p class="text-xs text-slate-300 mt-1">Patrulhamento ostensivo e vigilância integrada.</p>
                     </div>
                 </div>
 
-                <!-- Secondary Overlapping Image -->
                 <div class="hidden sm:block absolute -bottom-8 -right-8 w-56 h-56 rounded-2xl overflow-hidden border-2 border-orange-500/40 shadow-2xl z-20">
                     <img src="{{ asset('images/atlas/cftv-monitoramento.jpg') }}" alt="Sala CFTV Atlas" class="w-full h-full object-cover">
                 </div>
             </div>
 
-            <!-- Right: Text & Company Credentials -->
             <div class="lg:col-span-7 space-y-6">
                 <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-slate-800 border border-slate-700 text-orange-400 text-xs font-bold uppercase tracking-wider">
                     <span>🏢 Quem Somos</span>
                 </div>
 
                 <h2 class="text-3xl sm:text-4xl font-black text-white leading-tight">
-                    Atlas Segurança e Zeladoria:<br>
+                    {{ $company['name'] }}:<br>
                     <span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-400">Excelência Tática e Rigor Operacional</span>
                 </h2>
 
                 <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
-                    Com sede em <strong>Arcos - MG</strong>, a <strong>Atlas Segurança e Zeladoria LTDA</strong> nasceu para elevar o padrão dos serviços de vigilância patrimonial, apoio operacional, brigadas de emergência e zeladoria em Minas Gerais.
+                    {{ $company['about_text_p1'] }}
                 </p>
 
                 <p class="text-slate-400 text-xs sm:text-sm leading-relaxed">
-                    Compreendemos as particularidades e os desafios de segurança de indústrias de calcário e mineração, usinas fotovoltaicas (solares), hospitais, condomínios residenciais e grandes eventos culturais da região centro-oeste mineira. Nossos profissionais passam por investigação social profunda, reciclagens técnicas e possuem supervisão motorizada constante.
+                    {{ $company['about_text_p2'] }}
                 </p>
 
-                <!-- Checkpoints Grid -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
                     <div class="flex items-start space-x-3 p-3 rounded-xl bg-slate-900/60 border border-slate-800">
                         <div class="text-orange-500 font-bold text-lg">✓</div>
@@ -357,14 +344,14 @@
                 </div>
 
                 <div class="pt-4 flex items-center space-x-4">
-                    <a href="tel:37999673426" class="px-6 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs uppercase tracking-wider border border-slate-700 transition-colors flex items-center space-x-2">
+                    <a href="tel:{{ preg_replace('/[^0-9]/', '', $company['phone']) }}" class="px-6 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs uppercase tracking-wider border border-slate-700 transition-colors flex items-center space-x-2">
                         <svg class="w-4 h-4 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
                         </svg>
-                        <span>(37) 99967-3426</span>
+                        <span>{{ $company['phone'] }}</span>
                     </a>
 
-                    <a href="https://wa.me/5537999673426?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20visita%20t%C3%A9cnica%20da%20Atlas." target="_blank" class="px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs uppercase tracking-wider transition-colors shadow-lg shadow-emerald-600/30">
+                    <a href="https://wa.me/{{ $company['phone_raw'] }}?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20visita%20t%C3%A9cnica%20da%20Atlas." target="_blank" class="px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs uppercase tracking-wider transition-colors shadow-lg shadow-emerald-600/30">
                         Agendar Vistoria Técnica Gratuita
                     </a>
                 </div>
@@ -376,7 +363,7 @@
 
 
 <!-- ============================================================
-     SIMULADOR INTERATIVO DE ORÇAMENTO (CONECTADO AO MYSQL)
+     SIMULADOR INTERATIVO DE ORÇAMENTO (GRAVA NO MYSQL)
      ============================================================ -->
 <section id="orcamento" class="py-24 relative overflow-hidden">
     <div class="absolute inset-0 cyber-grid opacity-25 pointer-events-none"></div>
@@ -395,10 +382,9 @@
             </p>
         </div>
 
-        <!-- Form Card Container -->
         <div class="rounded-3xl bg-[#0c101b] border border-slate-800 shadow-2xl p-6 sm:p-10 relative overflow-hidden">
             
-            <!-- Success Panel (Appears after submission) -->
+            <!-- Success Panel -->
             <div id="quote-success-panel" class="hidden text-center py-10 space-y-6">
                 <div class="w-20 h-20 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 flex items-center justify-center mx-auto text-4xl animate-bounce">
                     ✓
@@ -419,27 +405,20 @@
                 </div>
             </div>
 
-            <!-- Active Form -->
+            <!-- Form -->
             <form id="quote-form" action="{{ route('quote.store') }}" method="POST" class="space-y-6">
                 @csrf
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    
-                    <!-- Service Select -->
                     <div>
                         <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Serviço Desejado *</label>
                         <select name="service_type" required class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-orange-500 focus:outline-none transition-colors">
-                            <option value="Segurança Privada">Segurança Privada</option>
-                            <option value="Equipe de Apoio">Equipe de Apoio (Eventos)</option>
-                            <option value="Brigadista">Brigadista Profissional</option>
-                            <option value="Segurança Hospitalar">Segurança Hospitalar</option>
-                            <option value="Portaria e Controle de Acesso">Portaria e Controle de Acesso</option>
-                            <option value="Vigia e Segurança Patrimonial">Vigia & Usinas Fotovoltaicas</option>
-                            <option value="Central CFTV e Monitoramento 24h">Central CFTV & Monitoramento</option>
+                            @foreach($services as $s)
+                                <option value="{{ $s->title }}">{{ $s->title }}</option>
+                            @endforeach
                         </select>
                     </div>
 
-                    <!-- Segment Select -->
                     <div>
                         <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Segmento / Local</label>
                         <select name="segment" class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-orange-500 focus:outline-none transition-colors">
@@ -453,7 +432,6 @@
                         </select>
                     </div>
 
-                    <!-- Period / Scale -->
                     <div>
                         <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Regime / Escala *</label>
                         <select name="period" class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-orange-500 focus:outline-none transition-colors">
@@ -463,48 +441,42 @@
                             <option value="Evento / Pontual">Cobertura Pontual de Evento</option>
                         </select>
                     </div>
-
                 </div>
 
-                <!-- Personal / Company Info Grid -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pt-2">
-                    
                     <div>
                         <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Seu Nome *</label>
-                        <input type="text" name="name" required placeholder="Nome completo" class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-orange-500 focus:outline-none transition-colors">
+                        <input type="text" name="name" required placeholder="Nome completo" class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-orange-500 focus:outline-none">
                     </div>
 
                     <div>
                         <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Empresa / Condomínio</label>
-                        <input type="text" name="company" placeholder="Razão social ou condomínio" class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-orange-500 focus:outline-none transition-colors">
+                        <input type="text" name="company" placeholder="Razão social ou condomínio" class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-orange-500 focus:outline-none">
                     </div>
 
                     <div>
                         <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Telefone / WhatsApp *</label>
-                        <input type="text" name="phone" required placeholder="(37) 99999-9999" class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-orange-500 focus:outline-none transition-colors">
+                        <input type="text" name="phone" required placeholder="(37) 99999-9999" class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-orange-500 focus:outline-none">
                     </div>
 
                     <div>
                         <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">E-mail Comercial *</label>
-                        <input type="email" name="email" required placeholder="seu@email.com" class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-orange-500 focus:outline-none transition-colors">
+                        <input type="email" name="email" required placeholder="seu@email.com" class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-orange-500 focus:outline-none">
                     </div>
-
                 </div>
 
-                <!-- City & Details -->
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-2">
                     <div>
                         <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Cidade do Posto</label>
-                        <input type="text" name="city" value="Arcos - MG" class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-orange-500 focus:outline-none transition-colors">
+                        <input type="text" name="city" value="{{ $company['city'] }}" class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-orange-500 focus:outline-none">
                     </div>
 
                     <div class="sm:col-span-2">
                         <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Observações / Detalhes Específicos</label>
-                        <input type="text" name="details" placeholder="Quantidade de postos, data de início pretendida ou armamento..." class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-orange-500 focus:outline-none transition-colors">
+                        <input type="text" name="details" placeholder="Quantidade de postos, data de início pretendida ou armamento..." class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-orange-500 focus:outline-none">
                     </div>
                 </div>
 
-                <!-- Real-time Cost Estimation Preview Box -->
                 <div class="p-6 rounded-2xl bg-gradient-to-r from-slate-900 via-orange-950/20 to-slate-900 border border-orange-500/30 flex flex-col sm:flex-row items-center justify-between gap-4 mt-6">
                     <div>
                         <span class="text-xs font-bold text-orange-400 uppercase tracking-wider block">Estimativa de Investimento Mensal</span>
@@ -512,7 +484,7 @@
                             <span id="calc-estimate-display" class="text-3xl font-black text-white">R$ 5.920,00</span>
                             <span class="text-xs text-slate-400 font-normal">/posto estimado base</span>
                         </div>
-                        <span class="text-[11px] text-slate-400 block mt-0.5">*Valor referencial sujeito a alinhamento de escala e vistoria técnica em Arcos MG.</span>
+                        <span class="text-[11px] text-slate-400 block mt-0.5">*Valor referencial sujeito a alinhamento de escala e vistoria técnica em {{ $company['city'] }}.</span>
                     </div>
 
                     <button type="submit" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-orange-600 to-amber-500 hover:from-orange-500 hover:to-amber-400 text-white font-black text-sm uppercase tracking-wider shadow-lg shadow-orange-600/30 transition-all duration-300 transform hover:-translate-y-0.5 flex items-center justify-center space-x-2">
@@ -578,7 +550,7 @@
 
 
 <!-- ============================================================
-     GALERIA TÁTICA OFICIAL (FOTOS REAIS DA EMPRESA)
+     GALERIA TÁTICA OFICIAL (DINÂMICA VIA MYSQL)
      ============================================================ -->
 <section id="galeria" class="py-20 relative bg-[#090d16] border-t border-slate-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -596,7 +568,7 @@
                 </p>
             </div>
             <div>
-                <a href="https://wa.me/5537999673426?text=Ol%C3%A1!%20Gostaria%20de%20receber%20a%20apresenta%C3%A7%C3%A3o%20completa%20da%20Atlas." target="_blank" class="text-xs font-bold text-orange-400 hover:text-orange-300 flex items-center">
+                <a href="https://wa.me/{{ $company['phone_raw'] }}?text=Ol%C3%A1!%20Gostaria%20de%20receber%20a%20apresenta%C3%A7%C3%A3o%20completa%20da%20Atlas." target="_blank" class="text-xs font-bold text-orange-400 hover:text-orange-300 flex items-center">
                     <span>Solicitar Apresentação em PDF</span>
                     <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
@@ -605,69 +577,18 @@
             </div>
         </div>
 
-        <!-- Real Photos Grid with 3D Hover Effect -->
+        <!-- Dynamic Photos Grid -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            
-            <!-- Photo 1: CFTV Monitoramento -->
+            @foreach($gallery as $photo)
             <div class="tilt-card group relative h-72 rounded-2xl overflow-hidden border border-slate-800 shadow-xl">
-                <img src="{{ asset('images/atlas/cftv-monitoramento.jpg') }}" alt="CFTV Sala de Operação e Monitoramento Atlas" class="w-full h-full object-cover transform group-hover:scale-108 transition-transform duration-500">
+                <img src="{{ asset($photo->image) }}" alt="{{ $photo->title }}" class="w-full h-full object-cover transform group-hover:scale-108 transition-transform duration-500">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent"></div>
                 <div class="absolute bottom-4 left-4 right-4">
-                    <span class="text-[10px] font-bold text-orange-400 uppercase tracking-widest block">Sala de Operações</span>
-                    <h3 class="text-base font-extrabold text-white">Central CFTV & Monitoramento 24h</h3>
+                    <span class="text-[10px] font-bold text-orange-400 uppercase tracking-widest block">{{ $photo->category }}</span>
+                    <h3 class="text-base font-extrabold text-white">{{ $photo->title }}</h3>
                 </div>
             </div>
-
-            <!-- Photo 2: Usinas Fotovoltaicas -->
-            <div class="tilt-card group relative h-72 rounded-2xl overflow-hidden border border-slate-800 shadow-xl">
-                <img src="{{ asset('images/atlas/usinas-vigia.jpg') }}" alt="Segurança em Usinas Fotovoltaicas" class="w-full h-full object-cover transform group-hover:scale-108 transition-transform duration-500">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent"></div>
-                <div class="absolute bottom-4 left-4 right-4">
-                    <span class="text-[10px] font-bold text-orange-400 uppercase tracking-widest block">Usinas Solares</span>
-                    <h3 class="text-base font-extrabold text-white">Vigilância Perimetral & Frota</h3>
-                </div>
-            </div>
-
-            <!-- Photo 3: Brigadista -->
-            <div class="tilt-card group relative h-72 rounded-2xl overflow-hidden border border-slate-800 shadow-xl">
-                <img src="{{ asset('images/atlas/brigadista.jpg') }}" alt="Brigadista Atlas" class="w-full h-full object-cover transform group-hover:scale-108 transition-transform duration-500">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent"></div>
-                <div class="absolute bottom-4 left-4 right-4">
-                    <span class="text-[10px] font-bold text-orange-400 uppercase tracking-widest block">Emergência & Prevenção</span>
-                    <h3 class="text-base font-extrabold text-white">Brigadista Credenciado em Eventos</h3>
-                </div>
-            </div>
-
-            <!-- Photo 4: Equipe de Apoio -->
-            <div class="tilt-card group relative h-72 rounded-2xl overflow-hidden border border-slate-800 shadow-xl">
-                <img src="{{ asset('images/atlas/equipe-de-apoio.jpg') }}" alt="Equipe de Apoio Atlas" class="w-full h-full object-cover transform group-hover:scale-108 transition-transform duration-500">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent"></div>
-                <div class="absolute bottom-4 left-4 right-4">
-                    <span class="text-[10px] font-bold text-orange-400 uppercase tracking-widest block">Gestão de Fluxo</span>
-                    <h3 class="text-base font-extrabold text-white">Equipe de Apoio para Grandes Públicos</h3>
-                </div>
-            </div>
-
-            <!-- Photo 5: Controle de Acesso -->
-            <div class="tilt-card group relative h-72 rounded-2xl overflow-hidden border border-slate-800 shadow-xl">
-                <img src="{{ asset('images/atlas/controle-acesso-portaria.jpg') }}" alt="Controle de Acesso Portaria" class="w-full h-full object-cover transform group-hover:scale-108 transition-transform duration-500">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent"></div>
-                <div class="absolute bottom-4 left-4 right-4">
-                    <span class="text-[10px] font-bold text-orange-400 uppercase tracking-widest block">Portaria Inteligente</span>
-                    <h3 class="text-base font-extrabold text-white">Controle de Catracas & Biometria</h3>
-                </div>
-            </div>
-
-            <!-- Photo 6: Segurança Hospitalar / Recepção -->
-            <div class="tilt-card group relative h-72 rounded-2xl overflow-hidden border border-slate-800 shadow-xl">
-                <img src="{{ asset('images/atlas/seguranca-hospitalar-corporativa.jpg') }}" alt="Segurança Hospitalar e Corporativa" class="w-full h-full object-cover transform group-hover:scale-108 transition-transform duration-500">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent"></div>
-                <div class="absolute bottom-4 left-4 right-4">
-                    <span class="text-[10px] font-bold text-orange-400 uppercase tracking-widest block">Ambiente Crítico</span>
-                    <h3 class="text-base font-extrabold text-white">Segurança Hospitalar e Corporativa</h3>
-                </div>
-            </div>
-
+            @endforeach
         </div>
 
     </div>
@@ -682,24 +603,22 @@
         
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
             
-            <!-- Contact Info & Coordinates (5 cols) -->
             <div class="lg:col-span-5 space-y-6">
                 <span class="px-3 py-1 rounded-full bg-orange-500/10 border border-orange-500/30 text-orange-400 text-xs font-bold uppercase tracking-wider">
                     📞 Canais de Atendimento
                 </span>
 
                 <h2 class="text-3xl sm:text-4xl font-black text-white leading-tight">
-                    Fale com Nosso Plantão Tático em Arcos MG
+                    Fale com Nosso Plantão Tático em {{ $company['city'] }}
                 </h2>
 
                 <p class="text-slate-400 text-sm leading-relaxed">
                     Estamos prontos para atender sua solicitação de segurança, consultoria de risco ou visita técnica em qualquer horário do dia ou da noite.
                 </p>
 
-                <!-- Cards Info -->
                 <div class="space-y-4 pt-2">
                     
-                    <a href="tel:37999673426" class="p-4 rounded-2xl bg-slate-900 border border-slate-800 hover:border-orange-500/50 flex items-center space-x-4 transition-colors group">
+                    <a href="tel:{{ preg_replace('/[^0-9]/', '', $company['phone']) }}" class="p-4 rounded-2xl bg-slate-900 border border-slate-800 hover:border-orange-500/50 flex items-center space-x-4 transition-colors group">
                         <div class="w-12 h-12 rounded-xl bg-orange-500/10 border border-orange-500/30 text-orange-400 flex items-center justify-center shrink-0 group-hover:bg-orange-500 group-hover:text-white transition-colors">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
@@ -707,11 +626,11 @@
                         </div>
                         <div>
                             <span class="text-[10px] uppercase font-bold text-slate-400 tracking-wider block">Central Telefônica Direta</span>
-                            <span class="text-lg font-extrabold text-white group-hover:text-orange-400 transition-colors">(37) 99967-3426</span>
+                            <span class="text-lg font-extrabold text-white group-hover:text-orange-400 transition-colors">{{ $company['phone'] }}</span>
                         </div>
                     </a>
 
-                    <a href="https://wa.me/5537999673426?text=Ol%C3%A1!%20Gostaria%20de%20um%20or%C3%A7amento%20da%20Atlas." target="_blank" class="p-4 rounded-2xl bg-slate-900 border border-slate-800 hover:border-emerald-500/50 flex items-center space-x-4 transition-colors group">
+                    <a href="https://wa.me/{{ $company['phone_raw'] }}?text=Ol%C3%A1!%20Gostaria%20de%20um%20or%C3%A7amento%20da%20Atlas." target="_blank" class="p-4 rounded-2xl bg-slate-900 border border-slate-800 hover:border-emerald-500/50 flex items-center space-x-4 transition-colors group">
                         <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 flex items-center justify-center shrink-0 group-hover:bg-[#25D366] group-hover:text-white transition-colors">
                             <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
                                 <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
@@ -719,7 +638,7 @@
                         </div>
                         <div>
                             <span class="text-[10px] uppercase font-bold text-slate-400 tracking-wider block">Plantão WhatsApp 24 Horas</span>
-                            <span class="text-lg font-extrabold text-emerald-400">(37) 99967-3426</span>
+                            <span class="text-lg font-extrabold text-emerald-400">{{ $company['phone'] }}</span>
                         </div>
                     </a>
 
@@ -732,14 +651,13 @@
                         </div>
                         <div>
                             <span class="text-[10px] uppercase font-bold text-slate-400 tracking-wider block">Localização / Sede</span>
-                            <span class="text-sm font-bold text-white">Arcos - Minas Gerais</span>
+                            <span class="text-sm font-bold text-white">{{ $company['city'] }}</span>
                         </div>
                     </div>
 
                 </div>
             </div>
 
-            <!-- Contact Message Form (7 cols) -->
             <div class="lg:col-span-7">
                 <div class="p-8 sm:p-10 rounded-3xl bg-[#0c101b] border border-slate-800 shadow-2xl relative">
                     <h3 class="text-2xl font-black text-white mb-2">Envie uma Mensagem</h3>
@@ -751,29 +669,25 @@
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div>
                                 <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-1.5">Seu Nome *</label>
-                                <input type="text" name="name" required placeholder="Como podemos lhe chamar?" class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-orange-500 focus:outline-none transition-colors">
+                                <input type="text" name="name" required placeholder="Como podemos lhe chamar?" class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-orange-500 focus:outline-none">
                             </div>
                             <div>
                                 <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-1.5">Telefone / WhatsApp *</label>
-                                <input type="text" name="phone" required placeholder="(37) 99999-9999" class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-orange-500 focus:outline-none transition-colors">
+                                <input type="text" name="phone" required placeholder="(37) 99999-9999" class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-orange-500 focus:outline-none">
                             </div>
                         </div>
 
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div>
                                 <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-1.5">E-mail *</label>
-                                <input type="email" name="email" required placeholder="seu@email.com" class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-orange-500 focus:outline-none transition-colors">
+                                <input type="email" name="email" required placeholder="seu@email.com" class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-orange-500 focus:outline-none">
                             </div>
                             <div>
                                 <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-1.5">Serviço de Interesse</label>
-                                <select name="service" class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-orange-500 focus:outline-none transition-colors">
-                                    <option value="Segurança Privada">Segurança Privada</option>
-                                    <option value="Equipe de Apoio">Equipe de Apoio (Eventos)</option>
-                                    <option value="Brigadista">Brigadista</option>
-                                    <option value="Segurança Hospitalar">Segurança Hospitalar</option>
-                                    <option value="Portaria e Controle de Acesso">Portaria & Controle de Acesso</option>
-                                    <option value="Vigia e Zeladoria">Vigia & Zeladoria</option>
-                                    <option value="Monitoramento CFTV">Monitoramento CFTV 24h</option>
+                                <select name="service" class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-orange-500 focus:outline-none">
+                                    @foreach($services as $s)
+                                        <option value="{{ $s->title }}">{{ $s->title }}</option>
+                                    @endforeach
                                     <option value="Outros Assuntos">Outros Assuntos</option>
                                 </select>
                             </div>
@@ -781,7 +695,7 @@
 
                         <div>
                             <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-1.5">Mensagem / Demanda *</label>
-                            <textarea name="message" rows="4" required placeholder="Descreva brevemente sua necessidade..." class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-orange-500 focus:outline-none transition-colors"></textarea>
+                            <textarea name="message" rows="4" required placeholder="Descreva brevemente sua necessidade..." class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-orange-500 focus:outline-none"></textarea>
                         </div>
 
                         <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-orange-600 to-amber-500 hover:from-orange-500 hover:to-amber-400 text-white font-black text-sm uppercase tracking-wider shadow-lg shadow-orange-600/30 transition-all duration-300">

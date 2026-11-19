@@ -2,6 +2,8 @@
 
 namespace Tests\Feature;
 
+use App\Models\ContactMessage;
+use App\Models\QuoteRequest;
 use Database\Seeders\DatabaseSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -82,7 +84,55 @@ class ExampleTest extends TestCase
         $response = $this->get('/painel');
 
         $response->assertStatus(200);
-        $response->assertSee('Painel Operacional');
-        $response->assertSee('Arcos - MG');
+        $response->assertSee('ATLAS PAINEL');
+        $response->assertSee('Visão Geral');
+    }
+
+    public function test_admin_quotes_management_loads(): void
+    {
+        QuoteRequest::create([
+            'name' => 'Cliente Arcos',
+            'phone' => '37999673426',
+            'email' => 'cliente@arcos.com',
+            'service_type' => 'Segurança Privada',
+            'city' => 'Arcos - MG',
+            'status' => 'pendente'
+        ]);
+
+        $response = $this->get('/painel/orcamentos');
+
+        $response->assertStatus(200);
+        $response->assertSee('Cliente Arcos');
+        $response->assertSee('WhatsApp');
+    }
+
+    public function test_admin_services_management_loads(): void
+    {
+        $this->seed(DatabaseSeeder::class);
+
+        $response = $this->get('/painel/servicos');
+
+        $response->assertStatus(200);
+        $response->assertSee('Serviços Cadastrados');
+    }
+
+    public function test_admin_gallery_management_loads(): void
+    {
+        $this->seed(DatabaseSeeder::class);
+
+        $response = $this->get('/painel/galeria');
+
+        $response->assertStatus(200);
+        $response->assertSee('Galeria de Fotos do Site');
+    }
+
+    public function test_admin_settings_loads(): void
+    {
+        $this->seed(DatabaseSeeder::class);
+
+        $response = $this->get('/painel/configuracoes');
+
+        $response->assertStatus(200);
+        $response->assertSee('Configurações & Textos do Site');
     }
 }

@@ -11,6 +11,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             ServiceSeeder::class,
             DifferentialSeeder::class,
+            GallerySeeder::class,
+            SiteSettingSeeder::class,
         ]);
     }
 }
