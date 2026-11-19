@@ -63,7 +63,7 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
                     <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Destaques / Procedimentos (1 por linha)</label>
-                    <textarea name="features" rows="4" placeholder="Vigilância armada e desarmada&#10;Rondas motorizadas com GPS&#10;Reciclagem tática periódica" class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white text-xs focus:border-orange-500 focus:outline-none font-mono">@if($service->features){{ implode("\n", $service->features) }}@endif</textarea>
+                    <textarea name="features" rows="4" placeholder="Vigilância preventiva e patrimonial especializada&#10;Rondas motorizadas com GPS&#10;Reciclagem tática periódica" class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white text-xs focus:border-orange-500 focus:outline-none font-mono">@if($service->features){{ implode("\n", $service->features) }}@endif</textarea>
                 </div>
 
                 <div>

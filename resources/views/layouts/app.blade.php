@@ -299,7 +299,8 @@
                         Soluções Especializadas
                     </h4>
                     <ul class="space-y-2 text-xs">
-                        <li><a href="{{ route('home') }}#servicos" class="hover:text-orange-400 transition-colors">Segurança Privada Armada & Desarmada</a></li>
+                        <li><a href="{{ route('home') }}#drone-ia" class="hover:text-orange-400 text-orange-400 font-bold transition-colors">Monitoramento por Drone com IA</a></li>
+                        <li><a href="{{ route('home') }}#servicos" class="hover:text-orange-400 transition-colors">Segurança Privada & Patrimonial</a></li>
                         <li><a href="{{ route('home') }}#servicos" class="hover:text-orange-400 transition-colors">Equipe de Apoio para Eventos & Shows</a></li>
                         <li><a href="{{ route('home') }}#servicos" class="hover:text-orange-400 transition-colors">Brigadista & Prevenção de Incêndios</a></li>
                         <li><a href="{{ route('home') }}#servicos" class="hover:text-orange-400 transition-colors">Segurança Hospitalar & Clínicas</a></li>
