@@ -18,26 +18,54 @@ O projeto inclui as fotos e imagens oficiais de alta definição da empresa:
 
 ---
 
-## 🚀 Principais Funcionalidades
+## 🎛️ Painel Administrativo & Gerenciador Completo (Sidebar na Esquerda)
 
-1. **Efeitos 3D & Efeitos Parallax**:
-   - Rede de partículas e radar tático 3D interativo via Canvas no Hero.
-   - Cards com perspectiva 3D (*tilt cards*) que reagem à posição do cursor do usuário.
-   - Parallax suave de múltiplos planos em profundidade.
+O sistema conta com uma área administrativa completa com **menus na lateral esquerda** acessível em `/painel`:
 
-2. **Botão Flutuante Oficial do WhatsApp**:
-   - Ícone oficial do WhatsApp com efeito de pulso (*radar wave*).
-   - Tooltip dinâmico de atendimento e link direto para o plantão: **(37) 99967-3426**.
+1. 📊 **Visão Geral (`/painel`):**
+   - Métricas em tempo real (Total de cotações, pendentes, mensagens de contato, serviços ativos e fotos).
+   - Atalhos operacionais com um clique.
 
-3. **Simulador de Orçamento Interativo (Salvo no MySQL)**:
+2. 📋 **Cotações & Leads (`/painel/orcamentos`):**
+   - Visualização de todas as solicitações registradas no simulador de custos.
+   - **Botão Oficial para Abrir WhatsApp Direto** do cliente com mensagem pré-formatada.
+   - Ações de status dinâmicas: *Pendente*, *Lida / Em Análise*, *Concluída*.
+   - Filtros por status, busca por nome/empresa/telefone e exclusão.
+
+3. 💬 **Mensagens de Contato (`/painel/mensagens`):**
+   - Acompanhamento de mensagens do formulário "Fale Conosco".
+   - Abertura de conversa no WhatsApp do remetente e marcação como lida/respondida.
+
+4. 🛡️ **Gerenciar Serviços (`/painel/servicos`):**
+   - **CRUD Completo:** Adicionar novos serviços, editar títulos, badges, descrições, itens e benefícios, fazer upload de novas fotos, reordenar ou excluir.
+
+5. 📸 **Galeria de Fotos (`/painel/galeria`):**
+   - Controle total das fotos exibidas na galeria do site.
+   - Upload de imagens com categorização (CFTV, Usinas Solares, Portaria, Eventos, Hospitalar) e exclusão.
+
+6. ⭐ **Diferenciais Operacionais (`/painel/diferenciais`):**
+   - Gerenciar os pilares e métricas de destaque do site (ex: 24/7, 100%, < 8min).
+
+7. ⚙️ **Configurações & Textos do Site (`/painel/configuracoes`):**
+   - Altere telefones, WhatsApp, e-mail comercial, sede em Arcos - MG, textos do Hero e sobre nós em tempo real.
+
+---
+
+## 🚀 Principais Recursos do Site
+
+1. **Efeitos 3D & Parallax:**
+   - Canvas com rede de partículas e radar tático 3D interativo no Hero.
+   - Cards com perspectiva 3D (*tilt cards*) que reagem à inclinação do mouse.
+   - Efeitos Parallax em camadas de profundidade.
+
+2. **Botão Flutuante do WhatsApp:**
+   - Ícone vetorial oficial do WhatsApp (`#25D366`) com efeito pulsante (*radar wave*), tooltip de atendimento e link direto para o plantão: **(37) 99967-3426**.
+
+3. **Simulador de Orçamento Interativo (Salvo no MySQL):**
    - Estimador em tempo real de investimento por posto.
    - Envio assíncrono (AJAX) que registra o lead no banco de dados MySQL e oferece direcionamento imediato para o WhatsApp com a proposta formatada.
 
-4. **Painel Operacional (`/painel`)**:
-   - Gerenciamento de propostas e mensagens de contato em tempo real gravadas no MySQL.
-   - Atualização dinâmica de status (*pendente, analisado, proposta enviada, fechado*).
-
-5. **Compatibilidade com Apache / Hospedagem Compartilhada**:
+4. **Compatibilidade com Apache / Hospedagem Compartilhada:**
    - Contém o arquivo `.htaccess` na raiz direcionando para a pasta `public/`, permitindo publicação direta em servidores cPanel / Apache.
 
 ---
@@ -47,7 +75,7 @@ O projeto inclui as fotos e imagens oficiais de alta definição da empresa:
 - **Backend:** PHP 8.3+, Laravel 11/12 (Eloquent ORM, Blade, Migrations, Seeders)
 - **Banco de Dados:** MySQL
 - **Frontend:** Tailwind CSS v4, JavaScript Moderno, Canvas 3D
-- **Testes Automatizados:** PHPUnit (100% dos testes aprovados)
+- **Testes Automatizados:** 100% dos testes aprovados via PHPUnit (10 testes, 26 asserções)
 
 ---
 
@@ -86,8 +114,12 @@ php artisan migrate --seed
 ```bash
 php artisan serve
 ```
-Acesse no navegador: `http://127.0.0.1:8000`  
-Painel Operacional: `http://127.0.0.1:8000/painel`
+- **Site:** `http://127.0.0.1:8000`
+- **Painel:** `http://127.0.0.1:8000/painel`
+- **Cotações:** `http://127.0.0.1:8000/painel/orcamentos`
+- **Serviços:** `http://127.0.0.1:8000/painel/servicos`
+- **Galeria:** `http://127.0.0.1:8000/painel/galeria`
+- **Textos:** `http://127.0.0.1:8000/painel/configuracoes`
 
 ---
 
