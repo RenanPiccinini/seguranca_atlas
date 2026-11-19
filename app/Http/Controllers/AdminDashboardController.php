@@ -18,15 +18,13 @@ class AdminDashboardController extends Controller
             'pending_quotes' => QuoteRequest::where('status', 'pendente')->count(),
             'read_quotes' => QuoteRequest::where('status', 'lida')->count(),
             'concluded_quotes' => QuoteRequest::where('status', 'concluida')->count(),
-            'total_contacts' => ContactMessage::count(),
-            'unread_contacts' => ContactMessage::where('status', 'nova')->count(),
+            'total_differentials' => Differential::count(),
             'total_services' => Service::count(),
             'total_photos' => GalleryItem::count(),
         ];
 
         $recentQuotes = QuoteRequest::orderBy('created_at', 'desc')->take(8)->get();
-        $recentContacts = ContactMessage::orderBy('created_at', 'desc')->take(6)->get();
 
-        return view('admin.dashboard', compact('stats', 'recentQuotes', 'recentContacts'));
+        return view('admin.dashboard', compact('stats', 'recentQuotes'));
     }
 }

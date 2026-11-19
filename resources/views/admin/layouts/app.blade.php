@@ -17,27 +17,48 @@
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="bg-[#07090e] text-slate-100 antialiased font-sans flex min-h-screen">
+<body class="bg-[#07090e] text-slate-100 antialiased font-sans min-h-screen flex flex-col" x-data="{ sidebarOpen: false }">
 
     @php
         $pendingQuotesCount = \App\Models\QuoteRequest::where('status', 'pendente')->count();
-        $unreadMessagesCount = \App\Models\ContactMessage::where('status', 'nova')->count();
     @endphp
 
+    <!-- Mobile Backdrop Overlay -->
+    <div x-show="sidebarOpen" 
+         x-transition:enter="transition-opacity ease-linear duration-300"
+         x-transition:enter-start="opacity-0"
+         x-transition:enter-end="opacity-100"
+         x-transition:leave="transition-opacity ease-linear duration-300"
+         x-transition:leave-start="opacity-100"
+         x-transition:leave-end="opacity-0"
+         @click="sidebarOpen = false" 
+         class="fixed inset-0 z-40 bg-black/80 backdrop-blur-sm lg:hidden"
+         style="display: none;"></div>
+
     <!-- ============================================================
-         SIDEBAR ESQUERDA (MENUS NA ESQUERDA)
+         SIDEBAR ESQUERDA (MENUS NA ESQUERDA - 100% RESPONSIVA)
          ============================================================ -->
-    <aside class="w-64 bg-[#0a0e17] border-r border-slate-800 flex flex-col justify-between shrink-0 fixed inset-y-0 left-0 z-30 transition-all">
+    <aside :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'"
+           class="w-64 bg-[#0a0e17] border-r border-slate-800 flex flex-col justify-between shrink-0 fixed inset-y-0 left-0 z-50 transition-transform duration-300 ease-in-out">
         <div>
             <!-- Brand Logo Header -->
-            <div class="h-20 flex items-center px-6 border-b border-slate-800/80 space-x-3 bg-[#080b12]">
-                <div class="w-10 h-10 rounded-lg bg-black border border-orange-500/30 flex items-center justify-center p-1 shadow-md shadow-orange-500/10 shrink-0">
-                    <img src="{{ asset('images/atlas/emblem.png') }}" class="w-full h-full object-contain" alt="Atlas Logo">
+            <div class="h-20 flex items-center justify-between px-6 border-b border-slate-800/80 bg-[#080b12]">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-lg bg-black border border-orange-500/30 flex items-center justify-center p-1 shadow-md shadow-orange-500/10 shrink-0">
+                        <img src="{{ asset('images/atlas/emblem.png') }}" class="w-full h-full object-contain" alt="Atlas Logo">
+                    </div>
+                    <div class="overflow-hidden">
+                        <span class="font-black text-white text-base tracking-wider block">ATLAS PAINEL</span>
+                        <span class="text-[10px] text-orange-400 font-bold uppercase tracking-wider block">Arcos - MG • 24h</span>
+                    </div>
                 </div>
-                <div class="overflow-hidden">
-                    <span class="font-black text-white text-base tracking-wider block">ATLAS PAINEL</span>
-                    <span class="text-[10px] text-orange-400 font-bold uppercase tracking-wider block">Arcos - MG • 24h</span>
-                </div>
+
+                <!-- Close button for mobile -->
+                <button @click="sidebarOpen = false" class="lg:hidden text-slate-400 hover:text-white p-1">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
             </div>
 
             <!-- Navigation Links -->
@@ -70,27 +91,11 @@
                     @endif
                 </a>
 
-                <!-- 3. Mensagens de Contato -->
-                <a href="{{ route('admin.messages.index') }}" 
-                   class="flex items-center justify-between px-3.5 py-3 rounded-xl transition-colors {{ request()->routeIs('admin.messages.*') ? 'bg-orange-500 text-white shadow-lg shadow-orange-500/25' : 'text-slate-300 hover:bg-slate-800/60 hover:text-white' }}">
-                    <div class="flex items-center space-x-3">
-                        <svg class="w-4 h-4 {{ request()->routeIs('admin.messages.*') ? 'text-white' : 'text-sky-400' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
-                        </svg>
-                        <span>Mensagens</span>
-                    </div>
-                    @if($unreadMessagesCount > 0)
-                    <span class="px-2 py-0.5 rounded-full text-[10px] font-black {{ request()->routeIs('admin.messages.*') ? 'bg-white text-orange-600' : 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/40' }}">
-                        {{ $unreadMessagesCount }}
-                    </span>
-                    @endif
-                </a>
-
-                <div class="pt-3 pb-1 px-3">
+                <div class="pt-4 pb-1 px-3">
                     <span class="text-[10px] uppercase font-bold text-slate-500 tracking-wider">Controle do Site (CMS)</span>
                 </div>
 
-                <!-- 4. Gerenciar Serviços -->
+                <!-- 3. Gerenciar Serviços -->
                 <a href="{{ route('admin.services.index') }}" 
                    class="flex items-center space-x-3 px-3.5 py-3 rounded-xl transition-colors {{ request()->routeIs('admin.services.*') ? 'bg-orange-500 text-white shadow-lg shadow-orange-500/25' : 'text-slate-300 hover:bg-slate-800/60 hover:text-white' }}">
                     <svg class="w-4 h-4 {{ request()->routeIs('admin.services.*') ? 'text-white' : 'text-orange-400' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -99,7 +104,7 @@
                     <span>Serviços do Site</span>
                 </a>
 
-                <!-- 5. Galeria de Fotos -->
+                <!-- 4. Galeria de Fotos -->
                 <a href="{{ route('admin.gallery.index') }}" 
                    class="flex items-center space-x-3 px-3.5 py-3 rounded-xl transition-colors {{ request()->routeIs('admin.gallery.*') ? 'bg-orange-500 text-white shadow-lg shadow-orange-500/25' : 'text-slate-300 hover:bg-slate-800/60 hover:text-white' }}">
                     <svg class="w-4 h-4 {{ request()->routeIs('admin.gallery.*') ? 'text-white' : 'text-purple-400' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -108,7 +113,7 @@
                     <span>Galeria de Fotos</span>
                 </a>
 
-                <!-- 6. Diferenciais -->
+                <!-- 5. Diferenciais -->
                 <a href="{{ route('admin.differentials.index') }}" 
                    class="flex items-center space-x-3 px-3.5 py-3 rounded-xl transition-colors {{ request()->routeIs('admin.differentials.*') ? 'bg-orange-500 text-white shadow-lg shadow-orange-500/25' : 'text-slate-300 hover:bg-slate-800/60 hover:text-white' }}">
                     <svg class="w-4 h-4 {{ request()->routeIs('admin.differentials.*') ? 'text-white' : 'text-amber-400' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -117,7 +122,7 @@
                     <span>Diferenciais</span>
                 </a>
 
-                <!-- 7. Configurações Gerais -->
+                <!-- 6. Configurações Gerais -->
                 <a href="{{ route('admin.settings.index') }}" 
                    class="flex items-center space-x-3 px-3.5 py-3 rounded-xl transition-colors {{ request()->routeIs('admin.settings.*') ? 'bg-orange-500 text-white shadow-lg shadow-orange-500/25' : 'text-slate-300 hover:bg-slate-800/60 hover:text-white' }}">
                     <svg class="w-4 h-4 {{ request()->routeIs('admin.settings.*') ? 'text-white' : 'text-slate-400' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -132,6 +137,25 @@
 
         <!-- Bottom Actions & System Info -->
         <div class="p-4 border-t border-slate-800/80 bg-[#080b12] space-y-3">
+            
+            <!-- User Status & Logout -->
+            @auth
+            <div class="px-2 py-1.5 rounded-xl bg-slate-900/90 border border-slate-800 flex items-center justify-between">
+                <div class="overflow-hidden">
+                    <span class="text-[10px] text-slate-500 font-bold block uppercase tracking-wider">Logado como</span>
+                    <span class="text-xs font-semibold text-white truncate block" title="{{ Auth::user()->email }}">{{ Auth::user()->email }}</span>
+                </div>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit" title="Encerrar Sessão" class="p-2 rounded-lg bg-rose-500/10 hover:bg-rose-500 text-rose-400 hover:text-white transition-colors">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+            @endauth
+
             <a href="{{ route('home') }}" target="_blank" class="w-full flex items-center justify-center space-x-2 py-2.5 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-200 text-xs font-bold border border-slate-700/60 transition-colors">
                 <span>Ver Site Público</span>
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -144,33 +168,44 @@
                     <span class="w-2 h-2 rounded-full bg-emerald-400 mr-1.5"></span>
                     MySQL Ativo
                 </span>
-                <span>v1.0</span>
+                <span>v1.2</span>
             </div>
         </div>
     </aside>
 
     <!-- ============================================================
-         MAIN CONTENT AREA (À DIREITA DA SIDEBAR)
+         MAIN CONTENT AREA (À DIREITA DA SIDEBAR - 100% RESPONSIVA)
          ============================================================ -->
-    <div class="flex-1 ml-64 flex flex-col min-h-screen">
+    <div class="flex-1 lg:ml-64 flex flex-col min-h-screen">
         
         <!-- Top Operational Bar -->
-        <header class="h-20 bg-[#0a0e17]/80 backdrop-blur-md border-b border-slate-800/80 px-8 flex items-center justify-between sticky top-0 z-20">
-            <div>
-                <h2 class="text-lg font-black text-white">@yield('page-title', 'Painel Atlas')</h2>
-                <p class="text-xs text-slate-400">@yield('page-subtitle', 'Base Operacional Arcos - MG')</p>
+        <header class="h-20 bg-[#0a0e17]/90 backdrop-blur-md border-b border-slate-800/80 px-4 sm:px-8 flex items-center justify-between sticky top-0 z-20">
+            <div class="flex items-center space-x-3 sm:space-x-4">
+                <!-- Hamburger Menu for Mobile -->
+                <button @click="sidebarOpen = !sidebarOpen" 
+                        class="lg:hidden p-2 rounded-xl bg-slate-800 border border-slate-700 text-slate-200 hover:text-white focus:outline-none focus:ring-2 focus:ring-orange-500">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+
+                <div>
+                    <h2 class="text-base sm:text-lg font-black text-white">@yield('page-title', 'Painel Atlas')</h2>
+                    <p class="text-[11px] sm:text-xs text-slate-400">@yield('page-subtitle', 'Base Operacional Arcos - MG')</p>
+                </div>
             </div>
 
-            <div class="flex items-center space-x-4">
-                <a href="https://wa.me/5537999673426" target="_blank" class="flex items-center space-x-1.5 px-3 py-1.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold hover:bg-emerald-500/20 transition-colors">
+            <div class="flex items-center space-x-2 sm:space-x-4">
+                <a href="https://wa.me/5537999673426" target="_blank" class="flex items-center space-x-1.5 px-2.5 sm:px-3 py-1.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold hover:bg-emerald-500/20 transition-colors">
                     <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                    <span>WhatsApp Central: (37) 99967-3426</span>
+                    <span class="hidden md:inline">WhatsApp Central:</span>
+                    <span>(37) 99967-3426</span>
                 </a>
             </div>
         </header>
 
         <!-- Main Body -->
-        <main class="flex-1 p-8 bg-[#07090e]">
+        <main class="flex-1 p-4 sm:p-8 bg-[#07090e]">
             
             @if(session('success'))
             <div class="mb-6 p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-semibold flex items-center justify-between shadow-lg">

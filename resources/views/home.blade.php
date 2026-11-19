@@ -119,25 +119,28 @@
                     </div>
                 </div>
 
-                <!-- Floating Parallax Badge 1 -->
-                <div data-parallax-speed="0.12" class="hidden sm:flex absolute -bottom-6 -left-8 p-3.5 rounded-2xl bg-[#0d121f]/90 border border-orange-500/40 shadow-2xl backdrop-blur-md items-center space-x-3 z-20 animate-float">
-                    <div class="w-10 h-10 rounded-xl bg-orange-500/20 text-orange-400 flex items-center justify-center font-bold">
-                        🛡️
+                <!-- Tactical Badges (100% Responsivo: Flutuante no Desktop e Grid Tático no Mobile) -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4 sm:mt-0 sm:block">
+                    <!-- Badge 1 -->
+                    <div data-parallax-speed="0.12" class="sm:absolute sm:-bottom-6 sm:-left-8 p-3.5 rounded-2xl bg-[#0d121f]/95 border border-orange-500/40 shadow-2xl backdrop-blur-md flex items-center space-x-3 z-20 animate-float">
+                        <div class="w-10 h-10 rounded-xl bg-orange-500/20 text-orange-400 flex items-center justify-center font-bold shrink-0">
+                            🛡️
+                        </div>
+                        <div>
+                            <span class="text-[10px] uppercase tracking-wider text-slate-400 font-semibold block">Vigilância Ostensiva</span>
+                            <span class="text-xs font-extrabold text-white">Equipes Treinadas</span>
+                        </div>
                     </div>
-                    <div>
-                        <span class="text-[10px] uppercase tracking-wider text-slate-400 font-semibold block">Vigilância Ostensiva</span>
-                        <span class="text-xs font-extrabold text-white">Equipes Treinadas</span>
-                    </div>
-                </div>
 
-                <!-- Floating Parallax Badge 2 -->
-                <div data-parallax-speed="0.18" class="hidden sm:flex absolute -top-6 -right-6 p-3.5 rounded-2xl bg-[#0d121f]/90 border border-emerald-500/40 shadow-2xl backdrop-blur-md items-center space-x-3 z-20 animate-float-delay">
-                    <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold">
-                        ⚡
-                    </div>
-                    <div>
-                        <span class="text-[10px] uppercase tracking-wider text-slate-400 font-semibold block">Usinas & Indústrias</span>
-                        <span class="text-xs font-extrabold text-emerald-400">Proteção Perimetral</span>
+                    <!-- Badge 2 -->
+                    <div data-parallax-speed="0.18" class="sm:absolute sm:-top-6 sm:-right-6 p-3.5 rounded-2xl bg-[#0d121f]/95 border border-emerald-500/40 shadow-2xl backdrop-blur-md flex items-center space-x-3 z-20 animate-float-delay">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold shrink-0">
+                            ⚡
+                        </div>
+                        <div>
+                            <span class="text-[10px] uppercase tracking-wider text-slate-400 font-semibold block">Usinas & Indústrias</span>
+                            <span class="text-xs font-extrabold text-emerald-400">Proteção Perimetral</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -286,7 +289,7 @@
                     </div>
                 </div>
 
-                <div class="hidden sm:block absolute -bottom-8 -right-8 w-56 h-56 rounded-2xl overflow-hidden border-2 border-orange-500/40 shadow-2xl z-20">
+                <div class="sm:absolute sm:-bottom-8 sm:-right-8 w-full sm:w-56 h-48 sm:h-56 mt-4 sm:mt-0 rounded-2xl overflow-hidden border-2 border-orange-500/40 shadow-2xl z-20">
                     <img src="{{ asset('images/atlas/cftv-monitoramento.jpg') }}" alt="Sala CFTV Atlas" class="w-full h-full object-cover">
                 </div>
             </div>

@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\AdminDashboardController;
-use App\Http\Controllers\Admin\ContactMessageController;
 use App\Http\Controllers\Admin\DifferentialController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\QuoteRequestController;
@@ -18,21 +17,21 @@ Route::get('/servicos/{slug}', [HomeController::class, 'serviceDetail'])->name('
 Route::post('/contato', [ContactController::class, 'store'])->name('contact.store');
 Route::post('/orcamento', [QuoteController::class, 'store'])->name('quote.store');
 
-// Operational Management & CMS Panel (Menus na Esquerda)
-Route::prefix('painel')->name('admin.')->group(function () {
+// Redirect /dashboard to /painel
+Route::get('/dashboard', function () {
+    return redirect()->route('admin.dashboard');
+})->middleware('auth')->name('dashboard');
+
+// Operational Management & CMS Panel (Protected by Laravel Breeze Auth)
+Route::prefix('painel')->name('admin.')->middleware('auth')->group(function () {
     // Dashboard Overview
     Route::get('/', [AdminDashboardController::class, 'index'])->name('dashboard');
 
-    // Leads / Solicitações de Orçamento
+    // Leads / Solicitações de Orçamento (com WhatsApp direto, marcar como lida e concluída)
     Route::get('/orcamentos', [QuoteRequestController::class, 'index'])->name('quotes.index');
     Route::get('/orcamentos/{id}', [QuoteRequestController::class, 'show'])->name('quotes.show');
     Route::patch('/orcamentos/{id}/status', [QuoteRequestController::class, 'updateStatus'])->name('quotes.status');
     Route::delete('/orcamentos/{id}', [QuoteRequestController::class, 'destroy'])->name('quotes.destroy');
-
-    // Mensagens de Contato
-    Route::get('/mensagens', [ContactMessageController::class, 'index'])->name('messages.index');
-    Route::patch('/mensagens/{id}/status', [ContactMessageController::class, 'updateStatus'])->name('messages.status');
-    Route::delete('/mensagens/{id}', [ContactMessageController::class, 'destroy'])->name('messages.destroy');
 
     // Gerenciar Serviços (CRUD Completo)
     Route::resource('servicos', ServiceController::class)->names('services');
@@ -53,3 +52,6 @@ Route::prefix('painel')->name('admin.')->group(function () {
     Route::get('/configuracoes', [SettingController::class, 'index'])->name('settings.index');
     Route::post('/configuracoes', [SettingController::class, 'update'])->name('settings.update');
 });
+
+// Authentication Routes (Laravel Breeze Login / Logout)
+require __DIR__.'/auth.php';

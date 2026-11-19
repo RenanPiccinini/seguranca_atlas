@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\ContactMessage;
 use App\Models\QuoteRequest;
+use App\Models\User;
 use Database\Seeders\DatabaseSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -77,19 +78,29 @@ class ExampleTest extends TestCase
         $response->assertSee('Arcos - MG');
     }
 
-    public function test_admin_dashboard_loads(): void
+    public function test_unauthenticated_users_are_redirected_to_login(): void
+    {
+        $response = $this->get('/painel');
+        $response->assertRedirect('/login');
+    }
+
+    public function test_admin_dashboard_loads_for_authenticated_users(): void
     {
         $this->seed(DatabaseSeeder::class);
+        $user = User::factory()->create();
 
-        $response = $this->get('/painel');
+        $response = $this->actingAs($user)->get('/painel');
 
         $response->assertStatus(200);
         $response->assertSee('ATLAS PAINEL');
         $response->assertSee('Visão Geral');
+        $response->assertDontSee('<span>Mensagens</span>', false);
     }
 
     public function test_admin_quotes_management_loads(): void
     {
+        $user = User::factory()->create();
+
         QuoteRequest::create([
             'name' => 'Cliente Arcos',
             'phone' => '37999673426',
@@ -99,7 +110,7 @@ class ExampleTest extends TestCase
             'status' => 'pendente'
         ]);
 
-        $response = $this->get('/painel/orcamentos');
+        $response = $this->actingAs($user)->get('/painel/orcamentos');
 
         $response->assertStatus(200);
         $response->assertSee('Cliente Arcos');
@@ -109,8 +120,9 @@ class ExampleTest extends TestCase
     public function test_admin_services_management_loads(): void
     {
         $this->seed(DatabaseSeeder::class);
+        $user = User::factory()->create();
 
-        $response = $this->get('/painel/servicos');
+        $response = $this->actingAs($user)->get('/painel/servicos');
 
         $response->assertStatus(200);
         $response->assertSee('Serviços Cadastrados');
@@ -119,8 +131,9 @@ class ExampleTest extends TestCase
     public function test_admin_gallery_management_loads(): void
     {
         $this->seed(DatabaseSeeder::class);
+        $user = User::factory()->create();
 
-        $response = $this->get('/painel/galeria');
+        $response = $this->actingAs($user)->get('/painel/galeria');
 
         $response->assertStatus(200);
         $response->assertSee('Galeria de Fotos do Site');
@@ -129,8 +142,9 @@ class ExampleTest extends TestCase
     public function test_admin_settings_loads(): void
     {
         $this->seed(DatabaseSeeder::class);
+        $user = User::factory()->create();
 
-        $response = $this->get('/painel/configuracoes');
+        $response = $this->actingAs($user)->get('/painel/configuracoes');
 
         $response->assertStatus(200);
         $response->assertSee('Configurações & Textos do Site');

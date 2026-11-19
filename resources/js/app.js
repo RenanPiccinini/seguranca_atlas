@@ -1,3 +1,8 @@
+import Alpine from 'alpinejs';
+
+window.Alpine = Alpine;
+Alpine.start();
+
 // Atlas Segurança e Zeladoria - Core JavaScript Engine
 // 3D Visual Effects, Parallax Engine, Interactive Estimator & AJAX Forms
 
@@ -192,7 +197,6 @@ function init3DTilt() {
                 x: leftX - bounds.width / 2,
                 y: topY - bounds.height / 2
             };
-            const distance = Math.sqrt(center.x ** 2 + center.y ** 2);
 
             const maxAngle = 12; // degrees
             const rotateX = (+1 * (center.y / (bounds.height / 2)) * maxAngle).toFixed(2);
