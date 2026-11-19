@@ -11,11 +11,19 @@ class GallerySeeder extends Seeder
     {
         $photos = [
             [
+                'title' => 'Monitoramento por Drone com Inteligência Artificial',
+                'category' => 'Drones & Tecnologia',
+                'image' => 'images/atlas/drone-ia.jpg',
+                'description' => 'Patrulhamento aéreo perimetral em alta definição com visão computacional e detecção preditiva de invasões por IA.',
+                'display_order' => 1,
+                'is_active' => true,
+            ],
+            [
                 'title' => 'Central CFTV & Sala de Monitoramento 24h',
                 'category' => 'Central CFTV',
                 'image' => 'images/atlas/cftv-monitoramento.jpg',
                 'description' => 'Mural de videomonitoramento de alta resolução com operadores dedicados 24h.',
-                'display_order' => 1,
+                'display_order' => 2,
                 'is_active' => true,
             ],
             [
@@ -23,7 +31,7 @@ class GallerySeeder extends Seeder
                 'category' => 'Usinas Solares',
                 'image' => 'images/atlas/usinas-vigia.jpg',
                 'description' => 'Vigilância ostensiva e ronda perimetral com viaturas em complexos solares de Arcos e região.',
-                'display_order' => 2,
+                'display_order' => 3,
                 'is_active' => true,
             ],
             [
@@ -31,7 +39,7 @@ class GallerySeeder extends Seeder
                 'category' => 'Brigada de Emergência',
                 'image' => 'images/atlas/brigadista.jpg',
                 'description' => 'Profissionais capacitados para prevenção, combate a princípios de incêndio e APH.',
-                'display_order' => 3,
+                'display_order' => 4,
                 'is_active' => true,
             ],
             [
@@ -39,7 +47,7 @@ class GallerySeeder extends Seeder
                 'category' => 'Equipe de Apoio',
                 'image' => 'images/atlas/equipe-de-apoio.jpg',
                 'description' => 'Controle de fluxo de entrada, camarotes e ordenamento de público em eventos.',
-                'display_order' => 4,
+                'display_order' => 5,
                 'is_active' => true,
             ],
             [
@@ -47,7 +55,7 @@ class GallerySeeder extends Seeder
                 'category' => 'Portaria & Acesso',
                 'image' => 'images/atlas/controle-acesso-portaria.jpg',
                 'description' => 'Triagem biométrica e identificação informatizada para empresas e condomínios.',
-                'display_order' => 5,
+                'display_order' => 6,
                 'is_active' => true,
             ],
             [
@@ -55,7 +63,7 @@ class GallerySeeder extends Seeder
                 'category' => 'Hospitalar & Clínicas',
                 'image' => 'images/atlas/seguranca-hospitalar-corporativa.jpg',
                 'description' => 'Proteção em ambientes de saúde, clínicas e recepções executivas de alto padrão.',
-                'display_order' => 6,
+                'display_order' => 7,
                 'is_active' => true,
             ],
         ];

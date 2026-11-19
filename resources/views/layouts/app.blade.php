@@ -114,6 +114,10 @@
                 <nav class="hidden lg:flex items-center space-x-8 text-sm font-medium text-slate-300">
                     <a href="{{ route('home') }}#inicio" class="hover:text-orange-400 transition-colors">Início</a>
                     <a href="{{ route('home') }}#servicos" class="hover:text-orange-400 transition-colors">Serviços</a>
+                    <a href="{{ route('home') }}#drone-ia" class="text-orange-400 hover:text-orange-300 font-semibold flex items-center space-x-1.5 transition-colors">
+                        <span class="w-1.5 h-1.5 rounded-full bg-orange-400 animate-pulse"></span>
+                        <span>Drones & IA</span>
+                    </a>
                     <a href="{{ route('home') }}#sobre" class="hover:text-orange-400 transition-colors">Sobre Nós</a>
                     <a href="{{ route('home') }}#diferenciais" class="hover:text-orange-400 transition-colors">Diferenciais</a>
                     <a href="{{ route('home') }}#orcamento" class="hover:text-orange-400 transition-colors">Simulador</a>
@@ -170,6 +174,10 @@
             <nav class="mt-6 flex flex-col space-y-4 text-base font-medium">
                 <a href="{{ route('home') }}#inicio" class="text-slate-300 hover:text-orange-400 transition-colors">Início</a>
                 <a href="{{ route('home') }}#servicos" class="text-slate-300 hover:text-orange-400 transition-colors">Nossos Serviços</a>
+                <a href="{{ route('home') }}#drone-ia" class="text-orange-400 font-bold hover:text-orange-300 transition-colors flex items-center space-x-2">
+                    <span class="w-2 h-2 rounded-full bg-orange-400 animate-pulse"></span>
+                    <span>Drones & Inteligência Artificial</span>
+                </a>
                 <a href="{{ route('home') }}#sobre" class="text-slate-300 hover:text-orange-400 transition-colors">Sobre a Atlas</a>
                 <a href="{{ route('home') }}#diferenciais" class="text-slate-300 hover:text-orange-400 transition-colors">Diferenciais Operacionais</a>
                 <a href="{{ route('home') }}#orcamento" class="text-slate-300 hover:text-orange-400 transition-colors">Simulador de Orçamento</a>

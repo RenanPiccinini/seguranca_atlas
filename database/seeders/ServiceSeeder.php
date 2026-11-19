@@ -11,25 +11,47 @@ class ServiceSeeder extends Seeder
     {
         $services = [
             [
+                'title' => 'Monitoramento por Drone com Inteligência Artificial',
+                'slug' => 'monitoramento-drone-ia',
+                'badge' => 'Diferencial Tecnológico Exclusivo',
+                'icon' => 'radar',
+                'short_description' => 'Patrulhamento aéreo tático com drones de alta definição, sensores térmicos e inteligência artificial acoplada para detecção preditiva de intrusões.',
+                'full_description' => 'A Atlas traz para Arcos e região o que há de mais avançado no mundo em segurança perimetral: rondas aéreas automatizadas por drones equipados com visão computacional por Inteligência Artificial. O sistema realiza varredura térmica noturna, mapeamento 3D de áreas vulneráveis, detecção de movimentos suspeitos e sobrevoo de grandes extensões territoriais em usinas solares, mineradoras, indústrias e eventos.',
+                'image' => 'images/atlas/drone-ia.jpg',
+                'features' => [
+                    'Inteligência artificial acoplada com algoritmos de detecção perimetral em tempo real',
+                    'Câmeras óticas 4K e sensores infravermelhos térmicos para rondas noturnas',
+                    'Cobertura rápida de grandes perímetros de difícil acesso em poucos minutos',
+                    'Integração direta com a Central de Operações e equipe de resposta em solo'
+                ],
+                'benefits' => [
+                    'Eliminação total de pontos cegos em grandes áreas territoriais',
+                    'Detecção antecipada de invasões antes da aproximação do perímetro',
+                    'Monitoramento aéreo sem risco à integridade física de colaboradores'
+                ],
+                'display_order' => 1,
+                'is_active' => true,
+            ],
+            [
                 'title' => 'Segurança Privada',
                 'slug' => 'seguranca-privada',
                 'badge' => 'Proteção Estratégica',
                 'icon' => 'shield-check',
-                'short_description' => 'Vigilância ostensiva e preventiva personalizada com profissionais altamente treinados, armamento/equipamento regulamentado e postura tática exemplar.',
-                'full_description' => 'A Atlas Segurança Privada desenvolve projetos integrados de segurança sob medida para indústrias, condomínios fechados, instituições financeiras e propriedades rurais. Nossos agentes contam com treinamento tático contínuo, defesa pessoal, gerenciamento de crises e suporte operacional 24 horas por dia.',
+                'short_description' => 'Vigilância ostensiva e preventiva personalizada com profissionais altamente treinados, equipamentos táticos de radiocomunicação e postura exemplar.',
+                'full_description' => 'A Atlas Segurança Privada desenvolve projetos integrados de segurança preventiva sob medida para indústrias, condomínios fechados, instituições e propriedades rurais. Nossos agentes contam com treinamento tático contínuo, defesa pessoal, gerenciamento de crises, comunicação por rádio criptografado e supervisão operacional 24 horas por dia.',
                 'image' => 'images/atlas/usinas-vigia.jpg',
                 'features' => [
-                    'Vigilância armada e desarmada conforme diretrizes federais',
+                    'Vigilância patrimonial e preventiva especializada',
                     'Rondas motorizadas georreferenciadas com supervisão em tempo real',
                     'Análise de vulnerabilidade e elaboração de plano de segurança específico',
                     'Profissionais com antecedentes rigorosamente auditados e reciclagem contínua'
                 ],
                 'benefits' => [
                     'Mitigação preventiva de riscos e invasões',
-                    'Pronta-resposta tática com apoio de central blindada',
+                    'Pronta-resposta tática com apoio de central operacional',
                     'Tranquilidade absoluta para colaboradores, clientes e gestores'
                 ],
-                'display_order' => 1,
+                'display_order' => 2,
                 'is_active' => true,
             ],
             [
@@ -51,7 +73,7 @@ class ServiceSeeder extends Seeder
                     'Prevenção de incidentes e contenção rápida de tumultos',
                     'Relatório pós-evento com métricas e apontamentos de segurança'
                 ],
-                'display_order' => 2,
+                'display_order' => 3,
                 'is_active' => true,
             ],
             [
@@ -73,7 +95,7 @@ class ServiceSeeder extends Seeder
                     'Regularidade perante órgãos de fiscalização e seguradoras',
                     'Intervenção nos primeiros minutos críticos de qualquer emergência'
                 ],
-                'display_order' => 3,
+                'display_order' => 4,
                 'is_active' => true,
             ],
             [
@@ -95,7 +117,7 @@ class ServiceSeeder extends Seeder
                     'Preservação do patrimônio e dos insumos hospitalares de alto custo',
                     'Atendimento ágil a intercorrências sem perturbar o ambiente clínico'
                 ],
-                'display_order' => 4,
+                'display_order' => 5,
                 'is_active' => true,
             ],
             [
@@ -117,7 +139,7 @@ class ServiceSeeder extends Seeder
                     'Rastreabilidade total de quem entra e sai das instalações',
                     'Valorização patrimonial e satisfação comprovada dos moradores e usuários'
                 ],
-                'display_order' => 5,
+                'display_order' => 6,
                 'is_active' => true,
             ],
             [
@@ -139,7 +161,7 @@ class ServiceSeeder extends Seeder
                     'Histórico digital auditável de todas as rondas efetuadas',
                     'Prevenção direta contra intrusões noturnas e furtos de cabos'
                 ],
-                'display_order' => 6,
+                'display_order' => 7,
                 'is_active' => true,
             ],
             [
@@ -161,7 +183,7 @@ class ServiceSeeder extends Seeder
                     'Ação preventiva antes que o sinistro seja consumado',
                     'Gravações com qualidade forense para perícia e respaldo legal'
                 ],
-                'display_order' => 7,
+                'display_order' => 8,
                 'is_active' => true,
             ],
         ];

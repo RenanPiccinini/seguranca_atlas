@@ -310,6 +310,7 @@ function initQuoteCalculator() {
     const whatsappRedirectBtn = document.getElementById('quote-whatsapp-direct');
 
     const basePricing = {
+        'Monitoramento por Drone com Inteligência Artificial': 3900,
         'Segurança Privada': 4200,
         'Equipe de Apoio': 2600,
         'Brigadista': 3600,
